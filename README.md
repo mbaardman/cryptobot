@@ -1,4 +1,4 @@
-# cryptobot
+# Cryptobot
 Build a trading bot in crypto coins using the Binance API.
 
 This is a first though of what the structure on the server could look like.
@@ -35,3 +35,6 @@ You can find the structure of all files in this repository. However, I will keep
 │   |   ├──  order.py
 ├──  README.MD
 ```
+
+# Visualization
+![ ](https://github.com/mbaardman/cryptobot/blob/main/structure.png)
