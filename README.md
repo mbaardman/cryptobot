@@ -21,7 +21,7 @@ You can find the structure of all files in this repository. However, I will keep
 │   |   ├──  coin.py
 │   |   ├──  indicators.py
 │   |   ├──  order.py
-│   |   ├──  README.MD
+│   ├──  README.MD
 ├──  production
 │   ├── config.py
 │   ├── dag.py
@@ -34,7 +34,7 @@ You can find the structure of all files in this repository. However, I will keep
 │   |   ├──  coin.py
 │   |   ├──  indicators.py
 │   |   ├──  order.py
-│   |   ├──  README.MD
+│   ├──  README.MD
 ```
 
 # Visualization
