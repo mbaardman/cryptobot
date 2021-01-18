@@ -10,31 +10,33 @@ You can find the structure of all files in this repository. However, I will keep
 
 ```bash
 ├──  testing
-│   ├── config.py
-│   ├── dag.py
-│   ├── trade.py
-│   ├── cryptobot
-│   |   ├──  __init__.py
-│   |   ├──  alerts.py
-│   |   ├──  client.py
-│   |   ├──  account.py
-│   |   ├──  coin.py
-│   |   ├──  indicators.py
-│   |   ├──  order.py
-│   ├──  README.MD
+│   ├──  cryptobot
+│   │   ├── config.py
+│   │   ├── dag.py
+│   │   ├── trade.py
+│   │   ├── cryptobot
+│   │   |   ├──  __init__.py
+│   │   |   ├──  alerts.py
+│   │   |   ├──  client.py
+│   │   |   ├──  account.py
+│   │   |   ├──  coin.py
+│   │   |   ├──  indicators.py
+│   │   |   ├──  order.py
+│   │   ├──  README.MD
 ├──  production
-│   ├── config.py
-│   ├── dag.py
-│   ├── trade.py
-│   ├── cryptobot
-│   |   ├──  __init__.py
-│   |   ├──  alerts.py
-│   |   ├──  client.py
-│   |   ├──  account.py
-│   |   ├──  coin.py
-│   |   ├──  indicators.py
-│   |   ├──  order.py
-│   ├──  README.MD
+│   ├──  cryptobot
+│   │   ├── config.py
+│   │   ├── dag.py
+│   │   ├── trade.py
+│   │   ├── cryptobot
+│   │   |   ├──  __init__.py
+│   │   |   ├──  alerts.py
+│   │   |   ├──  client.py
+│   │   |   ├──  account.py
+│   │   |   ├──  coin.py
+│   │   |   ├──  indicators.py
+│   │   |   ├──  order.py
+│   │   ├──  README.MD
 ```
 
 # Visualization

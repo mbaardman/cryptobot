@@ -16,9 +16,9 @@ hostname = socket.gethostname()
 import os
 full_path = os.path.realpath(__file__)
 if hostname == '': # the name of your VM
-    ENV = full_path.split("/")[:-2]
+    ENV = full_path.split("/")[-3]
 else:
-    ENV = full_path.split("\\")[-2]
+    ENV = full_path.split("\\")[-3]
 prod_flow = (ENV == 'prod')
 
 

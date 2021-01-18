@@ -2,4 +2,4 @@
 Author: Marc Baardman
 """
 
-from cryptbot import *
+from cryptobot import *
