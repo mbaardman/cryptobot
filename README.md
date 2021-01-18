@@ -39,3 +39,12 @@ You can find the structure of all files in this repository. However, I will keep
 
 # Visualization
 ![ ](https://github.com/mbaardman/cryptobot/blob/main/structure.png)
+
+# PostgreSQL database Structure
+- **Account** - store all information that is related to the 
+- **Balance** - all balances (per coins and total balance)
+- **Orders** - all orders that are being pushed to Binance
+- **Transactions** - save all successfull orders
+- **Logs** - store all error messages in the code
+
+(datamodel might be added later)
