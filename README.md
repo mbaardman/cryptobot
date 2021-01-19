@@ -13,7 +13,11 @@ You can find the structure of all files in this repository. However, I will keep
 │   ├──  cryptobot
 │   │   ├── config.py
 │   │   ├── dag.py
-│   │   ├── trade.py
+│   │   ├── trade
+│   │   |   ├── BTC-USDT.py
+│   │   |   ├── ETH-USDT.py
+│   │   |   ├── ADA-USDT.py
+│   │   |   ├──...
 │   │   ├── cryptobot
 │   │   |   ├──  __init__.py
 │   │   |   ├──  alerts.py
@@ -27,7 +31,11 @@ You can find the structure of all files in this repository. However, I will keep
 │   ├──  cryptobot
 │   │   ├── config.py
 │   │   ├── dag.py
-│   │   ├── trade.py
+│   │   ├── trade
+│   │   |   ├── BTC-USDT.py
+│   │   |   ├── ETH-USDT.py
+│   │   |   ├── ADA-USDT.py
+│   │   |   ├──...
 │   │   ├── cryptobot
 │   │   |   ├──  __init__.py
 │   │   |   ├──  alerts.py

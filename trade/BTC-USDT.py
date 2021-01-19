@@ -1,11 +1,22 @@
 """
 Author: Marc Baardman
 """
-from cryptobot import *
-import config
 import sys
+sys.path.append('..')
+from cryptobot import *
+## importing socket module
+import socket
+## getting the hostname by socket.gethostname() method
+hostname = socket.gethostname()
+if 'crypto' not in hostname:
+    sys.path.append('../..')
+    import config_secured as config
+else:
+    import config
 from sqlalchemy import create_engine
 from datetime import datetime, timedelta
+
+COIN = 'BTCUSDT'
 
 def run(**kwargs):
     """
@@ -17,13 +28,14 @@ def run(**kwargs):
         binanceAuth - dict - authentication parameters for Binance API
         coin
     """
+    sms = alerts.SMSAlerts(config.twilio_account, config.twilio_token, config.twilio_from_phone, config.twilio_to_phone)
     try:
-        alert = SMSAlerts(config.twilio_account, config.twilio_token, config.twilio_from_phone, config.twilio_to_phone)
-        print(prod_flow)
+        engine = create_engine(config.connectionString)
+        print(config.prod_flow)
     except Exception as e:
         # Write error message to database (datetime, coin, type of error, exact error, complete log?)
         # Send text message?
-        alert.
+        sms.alert('Process failed for coin {}'.format(COIN))
         print(e.__class__.__name__)
         print(e)
 
@@ -37,18 +49,11 @@ def write_data(df, connectionString, write_table, write_schema):
     """
     Write table to destination
     """
-    engine = create_engine(connectionString)    
+    engine = create_engine(connectionString)
     df.to_sql(name = write_table, con = engine, schema = write_schema, index = False, if_exists = 'append')
-        
-
-# Eventually, the coin will be passed as an argument in the bash command
-#
-coin = 'USD-BTC'
-if __name__ != "__main__":
-    coin = sys.argv[1]
 
 
-run(prod_flow = config.prod_flow)
+run(coin = COIN)
 #run(prod_flow = config.prod_flow,
 #    connectionString = config.connection_string,
 #    bittrex_auth = config.bittrex_parameters,

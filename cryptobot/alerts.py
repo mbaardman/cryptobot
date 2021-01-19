@@ -21,7 +21,7 @@ class SMSAlerts(object):
                                     to = self.to_phone)
 
 
-    def alert(self, test_message, ask_permission = True, sleep_seconds = 40):
+    def alert(self, test_message, ask_permission = False, sleep_seconds = 40):
         self._send(test_message)
         if ask_permission:
              action = self._wait_for_permission(sleep_seconds)
@@ -43,7 +43,7 @@ if __name__ == "__main__":
     Alert = SMSAlerts(config.twilio_account, config.twilio_token, config.twilio_from_phone, config.twilio_to_phone)
     text = 'We gaan 10.000 euro in niks investeren'
     action = Alert.alert(text, ask_permission = True, sleep_seconds = config.sleep_seconds)
-
+    print('komt per ongeluk in de name==main')
     messages = Alert.client.messages.list(limit=20)#
     #
     for record in messages:
