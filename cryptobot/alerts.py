@@ -6,7 +6,12 @@ import os
 import sys
 from twilio.rest import Client as twilio_client
 import time
-import config
+
+if 'crypto' not in hostname:
+    sys.path.append('../..')
+    import config_secured as config
+else:
+    import config
 
 class SMSAlerts(object):
 
@@ -42,11 +47,5 @@ class SMSAlerts(object):
 if __name__ == "__main__":
     Alert = SMSAlerts(config.twilio_account, config.twilio_token, config.twilio_from_phone, config.twilio_to_phone)
     text = 'We gaan 10.000 euro in niks investeren'
-    action = Alert.alert(text, ask_permission = True, sleep_seconds = config.sleep_seconds)
-    print('komt per ongeluk in de name==main')
-    messages = Alert.client.messages.list(limit=20)#
-    #
-    for record in messages:
-        print(record.direction)
-        print(record.body)
-        print(record.sid)
+    action = Alert.alert(text, ask_permission = False, sleep_seconds = config.sleep_seconds)
+    
