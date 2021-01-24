@@ -6,7 +6,12 @@ from binance import client
 import pandas as pd
 import numpy as np
 from datetime import datetime
+import sys
 
+## importing socket module
+import socket
+## getting the hostname by socket.gethostname() method
+hostname = socket.gethostname()
 if 'crypto' not in hostname:
     sys.path.append('../..')
     import config_secured as config
@@ -15,36 +20,14 @@ else:
 
 class Account(object):
 
-    def __init__(self, credentials):
+    def __init__(self, client):
         """
         Initialize the class
         Input:
-            credentials - dict - dictionary of binance credentials that contains api_key and api_secret
+            client - Binance client object
         """
-        self.api_key = credentials['api_key']
-        self.api_secret = credentials['api_secret']
-        self.client = self.connect_client(self.api_key, self.api_secret)
+        self.client = client
 
-    def connect_client(self, api_key, api_secret):
-        """
-        Create Binance Client
-        Input:
-            api_key - str - Binance account api key
-            api_secret - str - Binance account api secret
-        Return:
-            client - obj - Binance client object
-        """
-        return client.Client(api_key, api_secret)
-    
-    def get_server_time(self):
-        """
-        Get server current datetime (UTC) of the binance server 
-        Return:
-            Datetime of the binance server
-        """
-        stamp = self.client.get_server_time()['serverTime']
-        return datetime.utcfromtimestamp(stamp/1000).strftime('%Y-%m-%d %H:%M:%S')
-    
     def get_balances(self):
         """
         Obtain all balances of assets that belong to the Binance account
@@ -54,7 +37,7 @@ class Account(object):
         """
         balances = pd.DataFrame.from_dict(self.client.get_account()['balances'])
         return balances[balances.free.astype(float) > 0]
-    
+
     def get_open_orders(self):
         """
         Get all active open orders
@@ -63,7 +46,7 @@ class Account(object):
         """
         self.open_orders = self.client.get_open_orders()
         return self.open_orders
-    
+
     def cancel_all_orders(self):
         """
         Cancel all open orders that are not yet executed
@@ -73,7 +56,7 @@ class Account(object):
             self.get_open_orders()
         for order in self.open_orders:
             self.client.cancel_order(symbol = order['symbol'], orderId = order['orderId'])
-        
+
     def cancel_orderIds(self, orderIds):
         """
         Cancel specific order ID's
@@ -88,17 +71,17 @@ class Account(object):
             self.get_open_orders()
         for id in orderIds:
             try:
-                next(self.client.cancel_order(symbol = item['symbol'], orderId = id) for item in self.open_orders if item['orderId'] == id) 
+                next(self.client.cancel_order(symbol = item['symbol'], orderId = id) for item in self.open_orders if item['orderId'] == id)
             except Exception as err:
                 print(err)
-    
+
     def market_buy(self, market, quantity, **kwargs):
         """
         Send market buy order to Binance
         Input:
             market - str - the market
             quantity - float - total amount you want to buy
-            
+
             **kwargs optional parameters:
                 quoteOrderQty - float - the amount the user wants to spend of the quote asset
                 newClientOrderId - str - A unique id for the order. Automatically generated if not sent.
@@ -106,14 +89,14 @@ class Account(object):
                 recvWindow - int - the number of milliseconds the request is valid for
         """
         self.client.order_market_buy(symbol = market, quantity = quantity, **kwargs)
-    
+
     def market_sell(self, market, quantity, **kwargs):
         """
         Send market sell order to Binance
         Input:
             market - str - the market
             quantity - float - total amount you want to buy
-            
+
             **kwargs optional parameters:
                 quoteOrderQty - float - the amount the user wants to spend of the quote asset
                 newClientOrderId - str - A unique id for the order. Automatically generated if not sent.
@@ -121,16 +104,16 @@ class Account(object):
                 recvWindow - int - the number of milliseconds the request is valid for
         """
         self.client.order_market_sell(symbol = market, quantity = quantity, **kwargs)
-        
+
     def limit_buy(self, market, quantity, price, timeInForce = 'GTC', **kwargs):
         """
         Send limit buy order to Binance
         Input:
             market - str - the market
             quantity - float - total amount you want to buy
-            price - float - price per unit 
+            price - float - price per unit
             timeInForce - str - time that the order will be valid  (default = 'Good Till Valid')
-            
+
             **kwargs optional parameters:
                 stopPrice - float - Used with stop orders
                 icebergQty - float - Used with iceberg orders
@@ -139,16 +122,16 @@ class Account(object):
                 recvWindow - int - the number of milliseconds the request is valid for
         """
         self.client.order_limit_buy(symbol = market, quantity = quantity, price = price, timeInForce = timeInForce, **kwargs)
-        
+
     def limit_sell(self, market, quantity, price, timeInForce = 'GTC', **kwargs):
         """
         Send limit sell order to Binance
         Input:
             market - str - the market
             quantity - float - total amount you want to buy
-            price - float - price per unit 
+            price - float - price per unit
             timeInForce - str - time that the order will be valid  (default = 'Good Till Valid')
-            
+
             **kwargs optional parameters:
                 stopPrice - float - Used with stop orders
                 icebergQty - float - Used with iceberg orders
