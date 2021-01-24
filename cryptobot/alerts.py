@@ -3,9 +3,19 @@ Author: Marc Baardman
 """
 
 import os
-import sys
 from twilio.rest import Client as twilio_client
 import time
+import sys
+
+## importing socket module
+import socket
+## getting the hostname by socket.gethostname() method
+hostname = socket.gethostname()
+if 'crypto' not in hostname:
+    sys.path.append('../..')
+    import config_secured as config
+else:
+    import config
 
 if 'crypto' not in hostname:
     sys.path.append('../..')
@@ -48,4 +58,3 @@ if __name__ == "__main__":
     Alert = SMSAlerts(config.twilio_account, config.twilio_token, config.twilio_from_phone, config.twilio_to_phone)
     text = 'We gaan 10.000 euro in niks investeren'
     action = Alert.alert(text, ask_permission = False, sleep_seconds = config.sleep_seconds)
-    
