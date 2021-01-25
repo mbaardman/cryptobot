@@ -1,6 +1,7 @@
 """
 Author: Marc Baardman
 """
+from cryptobot import Cryptobot
 from binance import client
 import pandas as pd
 import numpy as np
@@ -18,7 +19,7 @@ else:
     import config
 
 
-class Client(object):
+class Binance(Cryptobot):
 
     def __init__(self, credentials):
         """
@@ -49,3 +50,14 @@ class Client(object):
         """
         stamp = self.client.get_server_time()['serverTime']
         return datetime.utcfromtimestamp(stamp/1000).strftime('%Y-%m-%d %H:%M:%S')
+
+class Postgres(Cryptobot):
+
+    def __init__(self):
+        pass
+
+    def write_data(self, conn, df, table, schema):
+        pass
+
+    def get_data(self, conn, query, table, schema):
+        pass

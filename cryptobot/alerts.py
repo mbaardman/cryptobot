@@ -1,7 +1,7 @@
 """
 Author: Marc Baardman
 """
-
+from cryptobot import Cryptobot
 import os
 from twilio.rest import Client as twilio_client
 import time
@@ -11,11 +11,6 @@ import sys
 import socket
 ## getting the hostname by socket.gethostname() method
 hostname = socket.gethostname()
-if 'crypto' not in hostname:
-    sys.path.append('../..')
-    import config_secured as config
-else:
-    import config
 
 if 'crypto' not in hostname:
     sys.path.append('../..')
@@ -23,7 +18,7 @@ if 'crypto' not in hostname:
 else:
     import config
 
-class SMSAlerts(object):
+class SMSAlerts(Cryptobot):
 
     def __init__(self, account, token, from_phone, to_phone):
         self.client = twilio_client(account, token)
@@ -34,7 +29,6 @@ class SMSAlerts(object):
         message = self.client.messages.create(body = message,
                                     from_ = self.from_phone,
                                     to = self.to_phone)
-
 
     def alert(self, test_message, ask_permission = False, sleep_seconds = 40):
         self._send(test_message)
