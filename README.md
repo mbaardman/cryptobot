@@ -21,11 +21,11 @@ You can find the structure of all files in this repository. However, I will keep
 │   │   ├── cryptobot
 │   │   |   ├──  __init__.py
 │   │   |   ├──  alerts.py
-│   │   |   ├──  client.py
 │   │   |   ├──  account.py
 │   │   |   ├──  coin.py
+│   │   |   ├──  connectors.py
+│   │   |   ├──  cryptobot.py
 │   │   |   ├──  indicators.py
-│   │   |   ├──  order.py
 │   │   ├──  README.MD
 ├──  production
 │   ├──  cryptobot
@@ -39,11 +39,11 @@ You can find the structure of all files in this repository. However, I will keep
 │   │   ├── cryptobot
 │   │   |   ├──  __init__.py
 │   │   |   ├──  alerts.py
-│   │   |   ├──  client.py
 │   │   |   ├──  account.py
 │   │   |   ├──  coin.py
+│   │   |   ├──  connectors.py
+│   │   |   ├──  cryptobot.py
 │   │   |   ├──  indicators.py
-│   │   |   ├──  order.py
 │   │   ├──  README.MD
 ```
 
