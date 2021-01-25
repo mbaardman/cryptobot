@@ -1,8 +1,7 @@
 """
 Author: Marc Baardman
 """
-
-from binance import client
+from cryptobot import Cryptobot
 import pandas as pd
 import numpy as np
 from datetime import datetime
@@ -18,7 +17,7 @@ if 'crypto' not in hostname:
 else:
     import config
 
-class Account(object):
+class Account(Cryptobot):
 
     def __init__(self, client):
         """
@@ -26,6 +25,7 @@ class Account(object):
         Input:
             client - Binance client object
         """
+        super().__init__()
         self.client = client
 
     def get_balances(self):
@@ -144,7 +144,8 @@ class Account(object):
 
 
 if __name__=="__main__":
-    client = Account(config.binance_parameters)
-    #print(client.get_balances())
+    from connectors import Binance
+    client = Binance(config.binance_parameters)
+    account = Account(client.client)
     #print(client.get_open_orders())
-    client.cancel_orderIds([96519891, 580153738])
+    #account.cancel_orderIds([96519891, 580153738])
