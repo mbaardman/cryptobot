@@ -18,6 +18,8 @@ from datetime import datetime, timedelta
 
 COIN = 'BTCUSDT'
 
+# cancel al open orders, alleen in account ding?
+
 def run(**kwargs):
     """
     Entire process that needs to run to create the final table.
@@ -51,6 +53,10 @@ def write_data(df, connectionString, write_table, write_schema):
     """
     engine = create_engine(connectionString)
     df.to_sql(name = write_table, con = engine, schema = write_schema, index = False, if_exists = 'append')
+    
+def finish():
+    # close connection
+    # check if logging all went fine --> anders een smsje met naam van het script
 
 
 run(coin = COIN)

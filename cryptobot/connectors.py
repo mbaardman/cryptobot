@@ -51,13 +51,3 @@ class Binance(Cryptobot):
         stamp = self.client.get_server_time()['serverTime']
         return datetime.utcfromtimestamp(stamp/1000).strftime('%Y-%m-%d %H:%M:%S')
 
-class Postgres(Cryptobot):
-
-    def __init__(self):
-        pass
-
-    def write_data(self, conn, df, table, schema):
-        pass
-
-    def get_data(self, conn, query, table, schema):
-        pass
