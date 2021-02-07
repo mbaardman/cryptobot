@@ -63,10 +63,10 @@ handler.initialize_tables()
 
 The tables and their structures can be modified in the PostgreSQLHandler object by adjusting the _tables property. Note that you will also need to define the colNames and the values that need to be stored. Example: if you want to add a 'test' table, you will need to (i) add 'test' to the _tables property, (ii) add a test_colNames functions that returns all colnames (no spaces after comma!) and (iii) add a test_values function that is able to define all values that will be logged in the tables.
 
-**Default database structure**
+## Default database structure
 ![ ](https://github.com/mbaardman/cryptobot/blob/main/db_structure.png)
 
-**Important note for usage:**
+## Important note for usage:
 For logging, the user will need to specify the table where the information should be stored, this needs to be the first arg parameter. If nothing is specified, the logs table will be used. The second arg parameter should be a dictionary containing all additional information that is required to fill the table. If something is not specified, it will be set to None by the PostgreSQL handler. 
 
 Example:
