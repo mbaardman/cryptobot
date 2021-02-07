@@ -1,5 +1,5 @@
-# Cryptobot
-Build a trading bot in crypto coins using the Binance API.
+# Binance trading bot in Python
+Build an automated trading bot in crypto coins using the Binance API. Tools: Python & PostgreSQL.
 
 This is a first though of what the structure on the server could look like.
 Of course, this will probably change over time ;)
